@@ -1,0 +1,50 @@
+<annotation>
+	<folder>Stripe rust</folder>
+	<filename>5437613.jpg</filename>
+	<path>/media/naishadh/DATA1/projects/saha/Pre-processed dataset/Stripe rust/5437613.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1280</width>
+		<height>720</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>stripe_rust</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>196</xmin>
+			<ymin>33</ymin>
+			<xmax>556</xmax>
+			<ymax>83</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>stripe_rust</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>561</xmin>
+			<ymin>47</ymin>
+			<xmax>844</xmax>
+			<ymax>720</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>stripe_rust</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>886</xmin>
+			<ymin>70</ymin>
+			<xmax>1022</xmax>
+			<ymax>720</ymax>
+		</bndbox>
+	</object>
+</annotation>

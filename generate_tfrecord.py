@@ -12,8 +12,6 @@ from object_detection.utils import dataset_util
 from collections import namedtuple, OrderedDict
 
 flags = tf.app.flags
-flags.DEFINE_string('csv_input', '', 'Path to the CSV input')
-flags.DEFINE_string('output_path', '', 'Path to output TFRecord')
 FLAGS = flags.FLAGS
 
 
@@ -21,6 +19,10 @@ FLAGS = flags.FLAGS
 def class_text_to_int(row_label):
     if row_label == 'stripe_rust':
         return 1
+    elif row_label == 'leaf_rust':
+        return 2
+    elif row_label == 'tan_spot':
+        return 3
     else:
         None
 
@@ -73,16 +75,27 @@ def create_tf_example(group, path):
 
 
 def main(_):
-    writer = tf.python_io.TFRecordWriter(FLAGS.output_path)
-    path = os.path.join(os.getcwd(), 'Pre-processed dataset/Stripe rust/Test')
-    examples = pd.read_csv(FLAGS.csv_input)
+    writer = tf.python_io.TFRecordWriter(os.path.join(os.getcwd(), 'data/train.record'))
+    path = os.path.join(os.getcwd(), 'Pre-processed dataset/Train')
+    examples = pd.read_csv('Pre-processed dataset/Train/train.csv')
     grouped = split(examples, 'filename')
     for group in grouped:
         tf_example = create_tf_example(group, path)
         writer.write(tf_example.SerializeToString())
 
     writer.close()
-    output_path = os.path.join(os.getcwd(), FLAGS.output_path)
+    output_path = os.path.join(os.getcwd(), 'data/train.record')
+    print('Successfully created the TFRecords: {}'.format(output_path))
+    writer = tf.python_io.TFRecordWriter(os.path.join(os.getcwd(), 'data/test.record'))
+    path = os.path.join(os.getcwd(), 'Pre-processed dataset/Test')
+    examples = pd.read_csv('Pre-processed dataset/Test/test.csv')
+    grouped = split(examples, 'filename')
+    for group in grouped:
+        tf_example = create_tf_example(group, path)
+        writer.write(tf_example.SerializeToString())
+
+    writer.close()
+    output_path = os.path.join(os.getcwd(), 'data/test.record')
     print('Successfully created the TFRecords: {}'.format(output_path))
 
 
